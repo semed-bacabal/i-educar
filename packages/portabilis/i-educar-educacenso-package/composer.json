@@ -1,0 +1,48 @@
+{
+    "name": "portabilis/i-educar-educacenso-package",
+    "authors": [
+        {
+            "name": "Portábilis",
+            "email": "contato@portabilis.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "iEducar\\Packages\\Educacenso\\": "src/",
+            "iEducar\\Packages\\Educacenso\\Tests\\": "tests/",
+            "iEducar\\Packages\\Educacenso\\Database\\Factories\\": "database/factories/"
+        },
+        "files": [
+            "src/Helpers/Util.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EducacensoProvider"
+            ],
+            "providers": [
+                "iEducar\\Packages\\Educacenso\\Providers\\EducacensoProvider"
+            ]
+        }
+    },
+    "require": {
+        "maatwebsite/excel": "^3.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.16",
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^2.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "dex/composer-plug-and-play": true
+        }
+    },
+    "scripts": {
+        "coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "portabilis/i-educar-library-package",
+    "authors": [
+        {
+            "name": "Portabilis Tecnologia",
+            "email": "contato@portabilis.com.br"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "ieducar/intranet/include",
+            "ieducar/lib",
+            "ieducar/modules/Biblioteca/Model"
+        ],
+        "psr-4": {
+            "iEducar\\Packages\\Library\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "iEducar\\Packages\\Library\\Providers\\LibraryServiceProvider"
+            ]
+        }
+    }
+}

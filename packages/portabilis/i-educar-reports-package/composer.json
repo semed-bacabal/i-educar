@@ -1,0 +1,28 @@
+{
+    "name": "portabilis/i-educar-reports-package",
+    "authors": [
+        {
+            "name": "Portábilis",
+            "email": "contato@portabilis.com.br",
+            "homepage": "https://portabilis.com.br"
+        }
+    ],
+    "require": {
+        "cossou/jasperphp": "^2.8"
+    },
+    "autoload": {
+        "classmap": [
+            "ieducar"
+        ],
+        "psr-4": {
+            "iEducar\\Community\\Reports\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "iEducar\\Community\\Reports\\Providers\\ReportsServiceProvider"
+            ]
+        }
+    }
+}
