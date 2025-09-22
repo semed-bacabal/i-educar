@@ -111,7 +111,6 @@
         "new-install": [
             "@composer install",
             "@composer plug-and-play",
-            "@set-permissions",
             "@php artisan key:generate --ansi",
             "@php artisan storage:link --ansi",
             "@php artisan migrate --force --ansi"
