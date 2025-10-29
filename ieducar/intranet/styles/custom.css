@@ -363,7 +363,7 @@ a.icons-top{
 
 .rodape{
   height: 30px;
-  background-color: #47728f;
+  background-image: linear-gradient(to bottom, #03A678, #34BF57);
   color: #FFF;
   font-size: 10px;
 }

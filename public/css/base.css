@@ -58,7 +58,7 @@ a:hover {
 
 .ieducar-header {
   display: flex;
-  background: #47728f;
+  background-image: linear-gradient(to bottom, #03A678, #34BF57);
   height: 50px;
 }
 

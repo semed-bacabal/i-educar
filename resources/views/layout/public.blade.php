@@ -39,7 +39,7 @@
     @endif
 </head>
 
-<body>
+<body style="background-image: url('intranet/imagens/login_backgroud.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>
