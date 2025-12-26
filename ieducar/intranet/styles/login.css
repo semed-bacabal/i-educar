@@ -34,12 +34,13 @@ a {
 }
 
 #login-form {
-  width: 460px;
+  min-width: 260px;
+  width: 100%;
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.5);
   border: solid 1px #dddddd;
   margin: 0 auto;
-  padding: 50px;
+  padding: 36px;
   box-sizing: border-box;
   text-align: left;
 }
@@ -108,10 +109,11 @@ button.submit:disabled {
 
 .error,
 .success {
-  width: 460px;
+  min-width: 260px;
+  width: 100%;
   border-radius: 3px;
   margin: 0 auto 20px;
-  padding: 10px 50px;
+  padding: 10px 36px;
   box-sizing: border-box;
   text-align: left;
   color: #ff4e4e;

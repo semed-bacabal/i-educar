@@ -48,23 +48,106 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <div id="main">
+    <style>
+        #main {
+            display: flex;
+            width: 100%;
+            gap: 2rem;
+            box-sizing: border-box;
+        }
+        #main .half {
+            flex: 1 1 50%;
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        @media (max-width: 1200px) {
+            #main { flex-direction: column; }
+            #main .half { max-width: 100%; }
+        }
+    </style>
 
-    <div>
-        <img alt="Logo" style="width: 150px" src="{{ config('legacy.config.ieducar_image') ?? url('intranet/imagens/brasao-republica.png') }}" >
+    <div class="half" id="extra-content">
+        <?php
+            $avisos = [
+                [
+                    'imagem' => Asset::get('intranet/imagens/rematricula.png'),
+                    'titulo' => 'Rematricula Digital',
+                    'descricao' => 'Inscrições abertas até 30 de janeiro',
+                    'link' => 'https://ieducarbacabal.com.br/rematriculadigital/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Equipe de Trabalho',
+                    'descricao' => 'Inscrições abertas até 30 de janeiro',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/equipedetrabalho/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Gestor',
+                    'descricao' => 'Inscrições abertas até 30 de janeiro',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/gestor/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Supervisor SEMED',
+                    'descricao' => 'Inscrições abertas até 30 de janeiro',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/supervisaosemed/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Coordenador SEMED',
+                    'descricao' => 'Inscrições abertas até 30 de janeiro',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/coordenacaosemed/formulario.php',
+                ],
+            ];
+        ?>
+
+        <div style="background: #F2600C; border-radius: 16px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; box-sizing: border-box;">
+            <h2 style="color: white; margin: 0; padding-bottom: 16px; text-align: center; font-weight: bold;">AVISOS</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                @foreach($avisos as $aviso)
+                    <div style="background: #0A7307; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center;">
+                        <img alt="Imagem do aviso" src="{{ $aviso['imagem'] }}" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
+                        <h4 style="color: white; margin: 0 0 8px 0; font-weight: bold;">{{ $aviso['titulo'] }}</h4>
+                        <!-- <p style="font-size: 14px; color: white; margin-bottom: 12px;">{{ $aviso['descricao'] }}</p> -->
+                        <button
+                            type="button"
+                            style="margin-top: auto; padding: 8px 12px; border-radius: 6px; background-color: #2271b6ff; color: #fff; border: 1px solid #275b89; cursor: pointer; transition: background-color .2s, border-color .2s, transform .1s;"
+                            onclick='window.open(@json($aviso["link"]), "_blank")'
+                            onmouseover="this.style.backgroundColor='#1e4770'; this.style.borderColor='#1e4770'; this.style.transform='translateY(-1px)';"
+                            onmouseout="this.style.backgroundColor='#275b89'; this.style.borderColor='#275b89'; this.style.transform='none';"
+                        >
+                            Saiba mais
+                        </button>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 
-    <h1>{{ config('legacy.config.ieducar_entity_name') }}</h1>
+    <div class="half">
+        <div>
+            <img alt="Logo" style="width: 150px" src="{{ config('legacy.config.ieducar_image') ?? url('intranet/imagens/brasao-republica.png') }}" >
+        </div>
 
-    @if (session('status'))
-        <p class="success">{{ session('status') }}</p>
-    @endif
+        <h1>{{ config('legacy.config.ieducar_entity_name') }}</h1>
 
-    @if($errors->count())
-        <p class="error">{{ $errors->first() }}</p>
-    @endif
+        @if (session('status'))
+            <p class="success">{{ session('status') }}</p>
+        @endif
 
-    <div id="login-form" class="box shadow">
-        @yield('content')
+        @if($errors->count())
+            <p class="error">{{ $errors->first() }}</p>
+        @endif
+
+        <div id="login-form" class="box shadow">
+            @yield('content')
+        </div>
     </div>
 
 </div>
