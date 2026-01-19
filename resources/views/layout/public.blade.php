@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ url('favicon.ico') }}">
     <title>@if(isset($title)) {!! html_entity_decode($title) !!} - @endif {{ html_entity_decode(config('legacy.app.entity.name')) }} - i-Educar</title>
 
@@ -39,7 +40,7 @@
     @endif
 </head>
 
-<body style="background-image: url('intranet/imagens/login_background.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+<body style="width: 100%; min-height: 100vh; margin: 0; background-image: url('intranet/imagens/login_background.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>
@@ -54,6 +55,7 @@
             width: 100%;
             gap: 2rem;
             box-sizing: border-box;
+            padding: 1rem;
         }
         #main .half {
             flex: 1 1 50%;
@@ -63,72 +65,26 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            padding: 20px;
         }
-        @media (max-width: 1200px) {
+        .avisos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 900px) {
             #main { flex-direction: column; }
             #main .half { max-width: 100%; }
+            .avisos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .footer-social {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
         }
     </style>
-
-    <div class="half" id="extra-content">
-        <?php
-            $avisos = [
-                [
-                    'imagem' => Asset::get('intranet/imagens/rematricula.png'),
-                    'titulo' => 'Rematricula Digital',
-                    'descricao' => 'Inscrições abertas até 30 de janeiro',
-                    'link' => 'https://ieducarbacabal.com.br/rematriculadigital/formulario.php',
-                ],
-                [
-                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
-                    'titulo' => 'Avaliação Funcional de Equipe de Trabalho',
-                    'descricao' => 'Inscrições abertas até 30 de janeiro',
-                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/equipedetrabalho/formulario.php',
-                ],
-                [
-                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
-                    'titulo' => 'Avaliação Funcional de Gestor',
-                    'descricao' => 'Inscrições abertas até 30 de janeiro',
-                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/gestor/formulario.php',
-                ],
-                [
-                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
-                    'titulo' => 'Avaliação Funcional de Supervisor SEMED',
-                    'descricao' => 'Inscrições abertas até 30 de janeiro',
-                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/supervisaosemed/formulario.php',
-                ],
-                [
-                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
-                    'titulo' => 'Avaliação Funcional de Coordenador SEMED',
-                    'descricao' => 'Inscrições abertas até 30 de janeiro',
-                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/coordenacaosemed/formulario.php',
-                ],
-            ];
-        ?>
-
-        <div style="background: #F2600C; border-radius: 16px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; box-sizing: border-box;">
-            <h2 style="color: white; margin: 0; padding-bottom: 16px; text-align: center; font-weight: bold;">AVISOS</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
-                @foreach($avisos as $aviso)
-                    <div style="background: #0A7307; border-radius: 12px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center;">
-                        <img alt="Imagem do aviso" src="{{ $aviso['imagem'] }}" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
-                        <h4 style="color: white; margin: 0 0 8px 0; font-weight: bold;">{{ $aviso['titulo'] }}</h4>
-                        <!-- <p style="font-size: 14px; color: white; margin-bottom: 12px;">{{ $aviso['descricao'] }}</p> -->
-                        <button
-                            type="button"
-                            style="margin-top: auto; padding: 8px 12px; border-radius: 6px; background-color: #2271b6ff; color: #fff; border: 1px solid #275b89; cursor: pointer; transition: background-color .2s, border-color .2s, transform .1s;"
-                            onclick='window.open(@json($aviso["link"]), "_blank")'
-                            onmouseover="this.style.backgroundColor='#1e4770'; this.style.borderColor='#1e4770'; this.style.transform='translateY(-1px)';"
-                            onmouseout="this.style.backgroundColor='#275b89'; this.style.borderColor='#275b89'; this.style.transform='none';"
-                        >
-                            Saiba mais
-                        </button>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
     <div class="half">
         <div>
@@ -147,6 +103,59 @@
 
         <div id="login-form" class="box shadow">
             @yield('content')
+        </div>
+    </div>
+
+    <div class="half" id="extra-content">
+        <?php
+            $avisos = [
+                [
+                    'imagem' => Asset::get('intranet/imagens/rematricula.png'),
+                    'titulo' => 'Rematricula Digital',
+                    'link' => 'https://ieducarbacabal.com.br/rematriculadigital/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Equipe de Trabalho',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/equipedetrabalho/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Gestor',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/gestor/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Supervisor SEMED',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/supervisaosemed/formulario.php',
+                ],
+                [
+                    'imagem' => Asset::get('intranet/imagens/seletivo.png'),
+                    'titulo' => 'Avaliação Funcional de Coordenador SEMED',
+                    'link' => 'https://ieducarbacabal.com.br/avaliacaofuncional/coordenacaosemed/formulario.php',
+                ],
+            ];
+        ?>
+
+        <div style="background: #F2600C; border-radius: 12px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; box-sizing: border-box;">
+            <h2 style="color: white; margin: 0; padding-bottom: 12px; text-align: center; font-weight: bold;">AVISOS</h2>
+            <div class="avisos-grid">
+                @foreach($avisos as $aviso)
+                    <div style="background: #0A7307; border-radius: 12px; padding: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center;">
+                        <img alt="Imagem do aviso" src="{{ $aviso['imagem'] }}" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">
+                        <h4 style="color: white; margin: 0 0 8px 0; font-weight: bold;">{{ $aviso['titulo'] }}</h4>
+                        <button
+                            type="button"
+                            style="font-size: 12px; margin-top: auto; padding: 8px 12px; border-radius: 6px; background-color: #2271b6ff; color: #fff; border: 1px solid #275b89; cursor: pointer; transition: background-color .2s, border-color .2s, transform .1s;"
+                            onclick='window.open(@json($aviso["link"]), "_blank")'
+                            onmouseover="this.style.backgroundColor='#1e4770'; this.style.borderColor='#1e4770'; this.style.transform='translateY(-1px)';"
+                            onmouseout="this.style.backgroundColor='#275b89'; this.style.borderColor='#275b89'; this.style.transform='none';"
+                        >
+                            Saiba mais
+                        </button>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 
